@@ -1,0 +1,142 @@
+  io/snappydata/app/aqpTestWithClusterRestart.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="/export/shared/QA_DATA"
+    scriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_NYCTaxiCol_table.sql"
+    queryPath="$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueries.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableNYCQueries.sql"
+    sampleQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableNYCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+
+  io/snappydata/app/aqpTestWithBatchInserts.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="/export/shared/QA_DATA"
+    scriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_NYCTaxiCol_table.sql"
+    scriptLocation1="$GEMFIRE/../../../aqp/src/test/resources/scripts/aqpBatchInsert.sql"
+    queryPath="$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueries.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableNYCQueries.sql"
+    sampleQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableNYCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+
+  io/snappydata/app/aqpTestWithView.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="/export/shared/QA_DATA"
+    scriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_ClimateChangeCol_table.sql"
+    queryPath="$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueriesForCC.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableCCQueries.sql"
+    sampleQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableCCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+
+  io/snappydata/app/aqpTestWithHA.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="/export/shared/QA_DATA"
+    scriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_NYCTaxiCol_table.sql"
+    queryPath="$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueries.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableNYCQueries.sql"
+    sampleQueryFile="$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableNYCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+    numVMsToStop=1
+
+ io/snappydata/app/aqpSampleCreationTestUsingAPI.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation1="/export/shared/QA_DATA"
+    scriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_FareCol_table.sql"
+    dataLocation = "/export/shared/QA_DATA"
+    qcsParam1 = "hack_license"
+    sampleFraction1 = 0.01
+    baseTableName = "NYCTAXI"
+    sampleTableName = "NYCTAXI_SAMPLEHACKLICENSE"
+    queryPath= "$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueries.sql"
+    baseQueryFile= "$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableNYCQueries.sql"
+    sampleQueryFile= "$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableNYCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+
+  io/snappydata/app/aqpConnectionLevelTest.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    baseScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_column_table.sql"
+    sampleScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_sample_table.sql"
+
+  io/snappydata/app/aqpJDBCconnTest.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    HACQueries="$GEMFIRE/../../../aqp/src/test/resources/scripts/olap_approx.sql"
+    routingQueries="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/aqpQueryRouting.sql"
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    baseScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_column_table.sql"
+    sampleScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_sample_table.sql"
+
+  io/snappydata/app/aqpPartialRouteCol.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+    queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueriesPartialRoute.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueriesPartialRouteBaseTable.sql"
+    dataLocation = "$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    qcsParam1="uniquecarrier"
+    sampleFraction = 0.01
+    redundancy = 0
+
+  io/snappydata/app/aqpPartialRouteRow.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+    queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueriesPartialRoute.sql"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueriesPartialRouteBaseTable.sql"
+    dataLocation = "$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    qcsParam1="uniquecarrier"
+    sampleFraction = 0.01
+    redundancy = 0
+
+  io/snappydata/app/aqpQueryRouting.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/aqpQueryRouting.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/aqpQueryRoutingBase.sql"
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    createTableExtension="column"
+    qcsParam1="uniquecarrier"
+    sampleFraction = 0.03
+
+  io/snappydata/app/aqpPerfTestSampleTableWOE.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueries_WOE.sql"
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    qcsParam1="uniquecarrier"
+    qcsParam2="Year_"
+    qcsParam3="Month_"
+    sampleFraction=0.03
+
+  io/snappydata/app/aqpJoinQueryTest.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=2
+    queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfJoinQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+    baseQueryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfJoinQueriesBaseTable.sql"
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+    refDataLocation="$GEMFIRE/../../../examples/quickstart/data/airportcodeParquetData"
+    qcsParam1="uniquecarrier"
+    sampleFraction = 0.01
+    copartitioned = false
+    replicated = true
+    perfTest = false
+    isJoinQuery = true

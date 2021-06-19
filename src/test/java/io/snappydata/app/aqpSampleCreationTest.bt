@@ -1,0 +1,13 @@
+io/snappydata/app/aqpSampleCreationTest.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation = "/home/apps/spillai/data/nytaxitripdata_cleaned"
+    qcsParam1 = "hack_license"
+    sampleFraction1 = 0.01
+    baseTableName = "NYCTAXI"
+    sampleTableName = "NYCTAXI_SAMPLEHACKLICENSE"
+    queryPath= "$GEMFIRE/../../../aqp/src/test/resources/scripts/validationQueries.sql"
+    baseQueryFile= "$GEMFIRE/../../../aqp/src/test/resources/scripts/baseTableNYCQueries.sql"
+    sampleQueryFile= "$GEMFIRE/../../../aqp/src/test/resources/scripts/sampleTableNYCQueries.sql"
+    baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"

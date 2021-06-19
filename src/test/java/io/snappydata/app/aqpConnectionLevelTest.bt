@@ -1,0 +1,14 @@
+io/snappydata/hydra/security/startLdapServer.conf
+  A=snappyStore snappyStoreHosts=1 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+  ldapScriptPath="$GEMFIRE/../../../store/ldap-test-server"
+
+io/snappydata/app/aqpConnectionLevelTest.conf
+    A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+    B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+    C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+    dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+  //  dataLocation = "/export/shared/dataSets/Airline_1995-2015_ParquetData"
+    baseScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_column_table.sql"
+    sampleScriptLocation="$GEMFIRE/../../../aqp/src/test/resources/scripts/create_and_load_sample_table.sql"
+    passFilePath="$GEMFIRE/../../../aqp/src/test/resources/scripts/user1Credentials.txt"
+

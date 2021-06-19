@@ -1,0 +1,10 @@
+SELECT SUM(TaxiOut) as x FROM airline1  ;
+SELECT avg(TaxiIn) as x FROM airline1  ;
+SELECT SUM(ArrDelay) as x FROM airline1 WHERE uniquecarrier = 'WN'   ;
+SELECT avg(DepDelay) as x FROM airline1 WHERE Origin ='DCA'  ;
+SELECT uniquecarrier,year_, COUNT (CANCELLED) AS TOTAL_CANCELLED From airline1 WHERE CANCELLED = 1 GROUP BY  uniquecarrier,year_ ORDER BY  uniquecarrier  ;
+SELECT uniqueCarrier, SUM(ActualElapsedTime) as x FROM airline1 GROUP BY uniqueCarrier ;
+SELECT origin, avg(ArrDelay) as x FROM airline1 GROUP BY Origin ;
+SELECT uniqueCarrier, SUM(Distance) as x FROM airline1 GROUP BY uniqueCarrier  ORDER BY uniqueCarrier desc  ;
+SELECT uniqueCarrier, SUM(ArrDelay) as x FROM airline1 GROUP BY uniqueCarrier ORDER BY x  ;
+SELECT uniqueCarrier, avg(ArrDelay) as x FROM airline1 GROUP BY uniqueCarrier ORDER BY x  ;

@@ -1,0 +1,2 @@
+SELECT  hack_license, count(*) count FROM NYCTAXI group by hack_license order by count desc limit 10 WITH error;
+SELECT hack_license, sum(trip_distance) as daily_trips FROM nyctaxi  where year(pickup_datetime) = 2013 and month(pickup_datetime) = 9 group by hack_license  order by daily_trips desc WITH error;

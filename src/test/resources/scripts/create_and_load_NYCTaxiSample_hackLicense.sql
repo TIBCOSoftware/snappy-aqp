@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS NYCTAXI_SAMPLEHACKLICENSE ;
+CREATE SAMPLE TABLE NYCTAXI_SAMPLEHACKLICENSE ON NYCTAXI
+  OPTIONS(
+    buckets '7',
+    qcs 'hack_license',
+    fraction '0.01',
+    strataReservoirSize '50');
+ -- AS (    SELECT * FROM NYCTAXI);

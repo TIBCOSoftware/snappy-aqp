@@ -1,0 +1,6 @@
+SELECT hour(nyctaxi.pickup_dateTime),sum(fare.fare_amount),sum(fare.surcharge),sum(fare.tip_amount) from nyctaxi,fare where nyctaxi.hack_license=fare.hack_license and nyctaxi.medallion=fare.medallion and nyctaxi.pickup_datetime=fare.pickup_datetime group by 1 order by sum(fare_amount) desc limit 30;
+SELECT COUNT(*) as num_pickups,hour(pickup_datetime) as hour FROM NYCTAXI where hour(pickup_datetime) BETWEEN 1 AND 23 group by hour order by num_pickups;
+SELECT COUNT(*) AS number_of_trips FROM NYCTAXI ;
+SELECT medallion, COUNT(*) AS number_of_trips FROM NYCTAXI GROUP BY medallion order by number_of_trips desc limit 50;
+SELECT ROUND(pickup_latitude, 4) as lat , ROUND(pickup_longitude, 4) as lon, COUNT(*) as num_pickups  FROM NYCTAXI  WHERE pickup_latitude BETWEEN 40.61 AND 40.91 AND pickup_longitude BETWEEN -74.06 AND -73.77 GROUP BY 1,2 ORDER BY num_pickups desc limit 50;
+SELECT avg(trip_distance) as trip_distance,medallion from nyctaxi group by medallion order by trip_distance,medallion desc limit 10;

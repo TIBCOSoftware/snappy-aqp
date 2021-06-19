@@ -1,0 +1,3 @@
+SELECT Avg(ArrDelay) as x FROM FlightData fd, Flight fl , airlineRef where fl.uniqueCarrier = airlineRef.Code and (substring(airlineRef.description, 1, 1) = 'S' or substring(airlineRef.description, 1, 1) = 's' ) and fl.FlighTieStr = fd.FlighTieStr;
+SELECT SUM(ArrDelay) as x FROM FlightData fd , Flight fl, airlineRef where fl.uniqueCarrier = airlineRef.Code and (substring(airlineRef.description, 1, 1) = 'S' or substring(airlineRef.description, 1, 1) = 's' ) and fl.FlighTieStr = fd.FlighTieStr;
+SELECT COUNT(ArrDelay) as x FROM FlightData fd , Flight fl, airlineRef where fl.uniqueCarrier = airlineRef.Code and (substring(airlineRef.description, 1, 1) = 'S' or substring(airlineRef.description, 1, 1) = 's' ) and fl.FlighTieStr = fd.FlighTieStr;

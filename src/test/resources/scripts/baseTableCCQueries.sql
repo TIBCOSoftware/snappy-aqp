@@ -1,0 +1,4 @@
+SELECT stationid ,avg(tmax) from climatechange_view group by stationid order by stationid asc limit 10 ;
+SELECT element, round(avg(CAST(data_value AS real)/10),2) AS value FROM (select * from climateChange where cast(substr(ymd,0,4) as int) >= 1763) WHERE element IN ('TMIN', 'TMAX', 'PRCP') GROUP BY element order by value;
+SELECT COUNT(data_value) AS no_of_days,CAST(substr(ymd,0,4) AS INT) AS YEAR,id AS station_id FROM CLIMATECHANGE WHERE ELEMENT = 'TMAX' AND data_value > 100  GROUP BY year,id order by no_of_days desc limit 50;
+SELECT COUNT(data_value) AS no_of_days,id AS station_id FROM (SELECT data_value,id,CAST(substr(ymd,0,4) AS INT) AS YEAR FROM CLIMATECHANGE WHERE ELEMENT = 'TMAX' AND data_value > 100 ) WHERE YEAR =2004 AND id='MXN00003002' group by id order by no_of_days desc ;

@@ -1,0 +1,8 @@
+Select UNIQUECARRIER,sum(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER with error 0.4 confidence 0.95 behavior 'PARTIAL_RUN_ON_BASE_TABLE';
+Select UNIQUECARRIER,avg(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER with error 0.2 confidence 0.95 behavior 'PARTIAL_RUN_ON_BASE_TABLE';
+Select UNIQUECARRIER,avg(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER order by UNIQUECARRIER with error 0.4 confidence 0.95 behavior 'PARTIAL_RUN_ON_BASE_TABLE';
+Select UNIQUECARRIER,sum(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER order by UNIQUECARRIER with error 0.4 confidence 0.95 behavior 'PARTIAL_RUN_ON_BASE_TABLE';
+Select UNIQUECARRIER,sum(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER with error 0.4 confidence 0.95 behavior 'RUN_ON_FULL_TABLE';
+Select UNIQUECARRIER,avg(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER with error 0.2 confidence 0.95 behavior 'RUN_ON_FULL_TABLE';
+Select UNIQUECARRIER,avg(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER order by UNIQUECARRIER with error 0.04 confidence 0.95 behavior 'RUN_ON_FULL_TABLE';
+Select UNIQUECARRIER,sum(ArrDelay) as x , absolute_error(x),relative_error(x) from airline group by UNIQUECARRIER order by UNIQUECARRIER with error 0.04 confidence 0.95 behavior 'RUN_ON_FULL_TABLE';

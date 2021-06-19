@@ -1,0 +1,10 @@
+io/snappydata/app/aqpPerfTestSampleTableWOE.conf
+  A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+  B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+  C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+  queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfQueries_WOE.sql"
+  dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+  qcsParam1="uniquecarrier"
+  qcsParam2="Year_"
+  qcsParam3="Month_"
+  sampleFraction=0.03

@@ -1,0 +1,16 @@
+ io/snappydata/app/aqpJoinQueryTest.conf
+   A=snappyStore snappyStoreHosts=2 snappyStoreVMsPerHost=1 snappyStoreThreadsPerVM=1
+   B=lead leadHosts=1 leadVMsPerHost=1 leadThreadsPerVM=2
+   C=locator locatorHosts=1 locatorVMsPerHost=1 locatorThreadsPerVM=1
+   queryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfJoinQueries.sql"
+   baseScriptDir = "$GEMFIRE/../../../aqp/src/test/resources/scripts"
+   baseQueryFile="$GEMFIRE/../../../aqp/src/test/java/io/snappydata/app/perfJoinQueriesBaseTable.sql"
+   dataLocation="$GEMFIRE/../../../examples/quickstart/data/airlineParquetData"
+   //dataLocation = "/export/shared/dataSets/Airline_1995-2015_ParquetData"
+   refDataLocation="$GEMFIRE/../../../examples/quickstart/data/airportcodeParquetData"
+   qcsParam1="uniquecarrier"
+   sampleFraction = 0.01
+   copartitioned = false
+   replicated = true
+   perfTest = false
+   isJoinQuery = true

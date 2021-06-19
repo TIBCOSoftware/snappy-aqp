@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS NYCTAXI_SAMPLEMEDALLION ;
+CREATE SAMPLE TABLE NYCTAXI_SAMPLEMEDALLION ON NYCTAXI
+  OPTIONS(
+    buckets '7',
+    qcs 'medallion',
+    fraction '0.01',
+    strataReservoirSize '50');
+ -- AS ( SELECT * FROM NYCTAXI);

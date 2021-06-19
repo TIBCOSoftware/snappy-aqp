@@ -1,0 +1,10 @@
+SELECT SUM(TaxiOut) as x , absolute_error(x),relative_error(x) FROM airline1 with error ;
+SELECT avg(TaxiIn) as x , absolute_error(x),relative_error(x) FROM airline1 with error ;
+SELECT SUM(ArrDelay) as x , absolute_error(x),relative_error(x)  FROM airline1 WHERE uniquecarrier = 'WN'  with error ;
+SELECT avg(DepDelay) as x , absolute_error(x),relative_error(x) FROM airline1 WHERE Origin ='DCA' with error ;
+SELECT uniquecarrier,year_, COUNT (CANCELLED) AS TOTAL_CANCELLED From airline1 WHERE CANCELLED = 1 GROUP BY  uniquecarrier,year_ ORDER BY  uniquecarrier with error ;
+SELECT uniqueCarrier, SUM(ActualElapsedTime) as x , absolute_error(x) FROM airline1 GROUP BY uniqueCarrier with error;
+SELECT origin, avg(ArrDelay) as x , absolute_error(x) FROM airline1 GROUP BY Origin with error;
+SELECT uniqueCarrier, SUM(Distance) as x , absolute_error(x),relative_error(x) FROM airline1 GROUP BY uniqueCarrier  ORDER BY uniqueCarrier desc with error ;
+SELECT uniqueCarrier, SUM(ArrDelay) as x , absolute_error(x),relative_error(x) FROM airline1 GROUP BY uniqueCarrier ORDER BY x with error ;
+SELECT uniqueCarrier, avg(ArrDelay) as x , absolute_error(x),relative_error(x) FROM airline1 GROUP BY uniqueCarrier ORDER BY x with error ;
