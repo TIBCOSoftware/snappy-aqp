@@ -67,16 +67,15 @@ object AQPRules {
   }
 
   def clearAQPInfo(sqlContext: SQLContext): Unit = {
-    testHookStoreAQPInfoOpt.foreach(_.callbackBeforeClearing(
-      sqlContext.sessionState.asInstanceOf[SnappyAQPSessionState].
-      contextFunctions.aqpInfo.toArray))
-    sqlContext.sessionState.asInstanceOf[SnappyAQPSessionState].
-      contextFunctions.aqpInfo.clear()
-    sqlContext.sessionState.asInstanceOf[SnappyAQPSessionState].
-      contextFunctions.currentPlanAnalysis = None
+    sqlContext.sessionState match {
+      case aqpState: SnappyAQPSessionState =>
+        testHookStoreAQPInfoOpt.foreach(_.callbackBeforeClearing(
+          aqpState.contextFunctions.aqpInfo.toArray))
+        aqpState.contextFunctions.aqpInfo.clear()
+        aqpState.contextFunctions.currentPlanAnalysis = None
+      case _ =>
+    }
   }
-
-
 
   def isBootStrapAnalysis(plan: SparkPlan, position: Int): Boolean = getAQPInfo(plan, position)
   match {

@@ -20,7 +20,6 @@ import scala.collection.mutable
 
 import com.gemstone.gemfire.internal.cache.{AbstractRegion, ExternalTableMetaData, LocalRegion, PartitionedRegion}
 import com.pivotal.gemfirexd.internal.engine.Misc
-import com.pivotal.gemfirexd.internal.engine.Misc._
 import com.pivotal.gemfirexd.internal.engine.store.GemFireContainer
 import io.snappydata.sql.catalog.{CatalogObjectType, SnappyExternalCatalog}
 import io.snappydata.{Constant, Property}
@@ -82,16 +81,20 @@ case class ColumnFormatSamplingRelation(
     schema, qcsSparkPlan.map(_._1))
 
   override def canBeOnBuildSide: Boolean = {
-    val currentPlanAnaysis = this.sqlContext.sessionState.
-      asInstanceOf[SnappyAQPSessionState].contextFunctions.currentPlanAnalysis
-    if (currentPlanAnaysis != null) {
-      currentPlanAnaysis.map(x => x == AnalysisType.Bootstrap ||
-        x == AnalysisType.ByPassErrorCalc).getOrElse(true)
-    } else {
-      // ??
-      false
+    sqlContext.sessionState match {
+      case aqpState: SnappyAQPSessionState =>
+        val currentPlanAnaysis = aqpState.contextFunctions.currentPlanAnalysis
+        if (currentPlanAnaysis != null) {
+          currentPlanAnaysis.map(x => x == AnalysisType.Bootstrap ||
+              x == AnalysisType.ByPassErrorCalc).getOrElse(true)
+        } else {
+          // ??
+          false
+        }
+      case _ => false
     }
   }
+
   def getColocatedTable: Option[String] = if (isCopartitionedWithBaseTable) {
     baseRelation.getColocatedTable
   } else None
