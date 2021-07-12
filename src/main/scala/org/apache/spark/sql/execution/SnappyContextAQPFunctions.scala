@@ -237,8 +237,7 @@ class SnappyContextAQPFunctions extends SnappyContextFunctions with Logging {
         InternalRow(keyConverter(key), approx.estimate, approx.lowerBound,
           startTimeUTF, endTimeUTF)
     }
-    val temp = session.sparkContext.parallelize(topKRDD.collect())
-    val df = session.internalCreateDataFrame(temp, schema)
+    val df = session.internalCreateDataFrame(topKRDD.collect(), schema)
 
     // val df = context.internalCreateDataFrame(topKRDD, schema)
     df.sort(df.col(schema(1).name).desc).limit(topkWrapper.size)
@@ -286,8 +285,7 @@ class SnappyContextAQPFunctions extends SnappyContextFunctions with Logging {
           ApproximateType.serialize(approx), startTimeUTF, endTimeUTF)
     }
     // val df = context.internalCreateDataFrame(topKRDD, schema)
-    val temp = session.sparkContext.parallelize(topKRDD.collect())
-    val df = session.internalCreateDataFrame(temp, schema)
+    val df = session.internalCreateDataFrame(topKRDD.collect(), schema)
     df.sort(df.col(schema(1).name).desc).limit(topkWrapper.size)
         .queryExecution.toRdd
   }
@@ -320,8 +318,7 @@ class SnappyContextAQPFunctions extends SnappyContextFunctions with Logging {
       StructField(aggColumn, LongType),
       StructField(errorBounds, LongType)))
     //  val df = context.internalCreateDataFrame(topKRDD, topKSchema)
-    val temp = session.sparkContext.parallelize(topKRDD.collect())
-    val df = session.internalCreateDataFrame(temp, topKSchema)
+    val df = session.internalCreateDataFrame(topKRDD.collect(), topKSchema)
     df.sort(df.col(aggColumn).desc).limit(k)
   }
 
@@ -354,8 +351,7 @@ class SnappyContextAQPFunctions extends SnappyContextFunctions with Logging {
       StructField(errorBounds, ApproximateType)))
 
     // val df = context.internalCreateDataFrame(topKRDD, topKSchema)
-    val temp = session.sparkContext.parallelize(topKRDD.collect())
-    val df = session.internalCreateDataFrame(temp, topKSchema)
+    val df = session.internalCreateDataFrame(topKRDD.collect(), topKSchema)
     df.sort(df.col(aggColumn).desc).limit(k)
   }
 
