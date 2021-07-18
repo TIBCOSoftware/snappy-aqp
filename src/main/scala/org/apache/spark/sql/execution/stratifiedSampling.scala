@@ -26,9 +26,9 @@ import scala.language.reflectiveCalls
 
 import com.gemstone.gemfire.DataSerializable
 import com.gemstone.gemfire.internal.cache.lru.Sizeable
-import com.gemstone.gnu.trove.TIntArrayList
 import com.pivotal.gemfirexd.internal.engine.Misc
 import io.snappydata.Constant
+import it.unimi.dsi.fastutil.ints.IntArrayList
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.scheduler.TaskLocation
@@ -677,7 +677,7 @@ abstract class StratifiedSampler(final val options: SampleOptions)
   protected def isBucketLocal(partIndex: Int): Boolean = true
 
   protected def getBucketId(partIndex: Int,
-      primaryBucketIds: TIntArrayList = null)(hashValue: Int): Int = partIndex
+      primaryBucketIds: IntArrayList = null)(hashValue: Int): Int = partIndex
 
   def reservoirInRegion: Boolean = false
 }

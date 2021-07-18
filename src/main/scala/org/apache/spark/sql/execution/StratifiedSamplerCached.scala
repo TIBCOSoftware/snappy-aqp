@@ -25,7 +25,7 @@ import scala.language.reflectiveCalls
 
 import com.gemstone.gemfire.internal.cache.lru.Sizeable
 import com.gemstone.gemfire.internal.shared.SystemProperties
-import com.gemstone.gnu.trove.TIntArrayList
+import it.unimi.dsi.fastutil.ints.IntArrayList
 
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
@@ -371,7 +371,7 @@ class StratifiedSamplerCached(_options: SampleOptions)
     } else 0
   }
 
-  protected def getPrimaryBucketArray(partIndex: Int): TIntArrayList = null
+  protected def getPrimaryBucketArray(partIndex: Int): IntArrayList = null
 
   override def sample(items: Iterator[InternalRow],
       rowEncoder: ExpressionEncoder[Row],

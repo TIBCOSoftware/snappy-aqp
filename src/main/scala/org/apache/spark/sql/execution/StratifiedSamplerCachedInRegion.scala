@@ -17,10 +17,10 @@
 package org.apache.spark.sql.execution
 
 import com.gemstone.gemfire.internal.cache.PartitionedRegion
-import com.gemstone.gnu.trove.TIntArrayList
 import com.pivotal.gemfirexd.internal.engine.Misc
 import com.pivotal.gemfirexd.internal.engine.store.RegionEntryUtils
 import com.pivotal.gemfirexd.internal.iapi.types.RowLocation
+import it.unimi.dsi.fastutil.ints.IntArrayList
 
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
@@ -97,16 +97,16 @@ protected class StratifiedSamplerCachedInRegion(_reservoirRegion: PartitionedReg
     } else false
   }
 
-  override protected def getPrimaryBucketArray(partIndex: Int): TIntArrayList = if (partIndex ==
+  override protected def getPrimaryBucketArray(partIndex: Int): IntArrayList = if (partIndex ==
       -1) { _reservoirRegion.getDataStore.getAllLocalPrimaryBucketIdArray} else null
 
   override protected def getBucketId(partIndex: Int,
-      primaryBucketIds: TIntArrayList = null)(hashValue: Int): Int = {
+      primaryBucketIds: IntArrayList = null)(hashValue: Int): Int = {
     if (partIndex > -1 || primaryBucketIds == null || primaryBucketIds.size() == 0) {
       partIndex
     } else {
       val i: Int = hashValue.abs % primaryBucketIds.size()
-      primaryBucketIds.getQuick(i)
+      primaryBucketIds.getInt(i)
     }
   }
 
