@@ -28,7 +28,8 @@ import org.junit.Assert._
 import org.scalatest.Assertions
 
 import org.apache.spark.sql.execution.columnar.impl.ColumnFormatRelation
-import org.apache.spark.sql.{AnalysisException, SaveMode, SnappyContext, TableNotFoundException}
+import org.apache.spark.sql.sources.JdbcExtendedUtils
+import org.apache.spark.sql.{AnalysisException, SaveMode, SnappyContext}
 
 class AQPCatalogConsistencyDUnitTest(val s: String) extends ClusterManagerTestBase(s)
     with Assertions {
@@ -62,6 +63,9 @@ class AQPCatalogConsistencyDUnitTest(val s: String) extends ClusterManagerTestBa
 
   def assertTableDoesNotExist(queryRoutingDisabledConnection: Connection,
       table: String): Unit = {
+    intercept[AnalysisException] {
+      snc.snappySession.externalCatalog.getTable(schema.toLowerCase, table.toLowerCase)
+    }
     intercept[AnalysisException] {
       snc.snappySession.sessionCatalog.lookupRelation(
         snc.snappySession.tableIdentifier(table))
@@ -203,16 +207,16 @@ class AQPCatalogConsistencyDUnitTest(val s: String) extends ClusterManagerTestBa
 
     // make sure that the table exists in Hive metastore
     // should not throw an exception
-    snc.snappySession.sessionCatalog.lookupRelation(
-      snc.snappySession.tableIdentifier(sampleTableName))
+    val (sch, tab) = JdbcExtendedUtils.getTableWithSchema(sampleTableName, conn = null,
+      Some(snc.snappySession))
+    snc.snappySession.externalCatalog.getTable(sch, tab)
 
     // Repair catalog with removeTablesWithData flag false. This should not drop the table.
     connection.createStatement().execute("CALL SYS.REPAIR_CATALOG('false', 'true')")
 
     // make sure that the table exists in Hive metastore.
     // should not throw an exception
-    snc.snappySession.sessionCatalog.lookupRelation(
-      snc.snappySession.tableIdentifier(sampleTableName))
+    snc.snappySession.externalCatalog.getTable(sch, tab)
 
     connection.createStatement().execute("CALL SYS.REPAIR_CATALOG('true', 'true')")
 
