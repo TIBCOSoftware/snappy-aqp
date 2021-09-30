@@ -150,7 +150,7 @@ final class SnappyAQPSessionState(_snappySession: SnappySession)
     python.ExtractPythonUDFs,
     TokenizeSubqueries(snappySession),
     EnsureRequirements(conf),
-    OptimizeSortAndFilePlans(conf),
+    OptimizeSortAndFilePlans(snappySession),
     CollapseCollocatedPlans(snappySession),
   //  CollectAnalysisInfo,
     HideSubqueryNodes,
