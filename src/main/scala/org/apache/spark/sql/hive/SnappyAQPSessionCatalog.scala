@@ -30,7 +30,7 @@ import org.apache.spark.sql.catalyst.analysis.FunctionRegistry
 import org.apache.spark.sql.catalyst.catalog.{CatalogTable, FunctionResourceLoader, GlobalTempViewManager, SimpleCatalogRelation}
 import org.apache.spark.sql.catalyst.expressions.Attribute
 import org.apache.spark.sql.catalyst.plans.logical.{LeafNode, LogicalPlan}
-import org.apache.spark.sql.catalyst.util.CaseInsensitiveMap
+import org.apache.spark.sql.execution.columnar.ExternalStoreUtils.CaseInsensitiveMutableHashMap
 import org.apache.spark.sql.execution.datasources.FindDataSourceTable
 import org.apache.spark.sql.execution.{TopK, TopKWrapper}
 import org.apache.spark.sql.internal.{SQLConf, SnappySessionCatalog}
@@ -126,7 +126,7 @@ class SnappyAQPSessionCatalog(_externalCatalog: SnappyExternalCatalog,
 
   override protected def dropFromTemporaryBaseTable(table: CatalogTable): Unit = {
     // check for base temporary table and remove from mainDFToSampleDFs if present
-    val params = new CaseInsensitiveMap(table.storage.properties)
+    val params = new CaseInsensitiveMutableHashMap[String](table.storage.properties)
     params.get(SnappyExternalCatalog.BASETABLE_PROPERTY) match {
       case None =>
       case Some(baseTable) =>

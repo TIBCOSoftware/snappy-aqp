@@ -8,7 +8,6 @@ sourceSets.main.java.srcDirs = ['src/test/java/app', 'gemfire-core/src/main/java
 sourceSets.test.java.srcDirs = []
 sourceSets.test.scala.srcDirs = [ 'src/test/java', 'src/test/scala',
                                     'src/dunit/java', 'src/dunit/scala' ,'src/test/scala/aqp']
-version = '1.0.6'
 
 ext {
   PRODUCT_NAME = 'SnappyData AQP'

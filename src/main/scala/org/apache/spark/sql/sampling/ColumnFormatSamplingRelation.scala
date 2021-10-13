@@ -16,7 +16,7 @@
  */
 package org.apache.spark.sql.sampling
 
-import scala.collection.mutable
+import scala.collection.{mutable, Map => SMap}
 
 import com.gemstone.gemfire.internal.cache.{AbstractRegion, ExternalTableMetaData, LocalRegion, PartitionedRegion}
 import com.pivotal.gemfirexd.internal.engine.Misc
@@ -51,7 +51,7 @@ case class ColumnFormatSamplingRelation(
     override val schema: StructType,
     override val baseRelation: BaseColumnFormatRelation,
     @transient override val sqlContext: SQLContext,
-    override val samplingOptions: Map[String, String],
+    override val samplingOptions: SMap[String, String],
     origOptions: Map[String, String],
     sampleTable: String,
     baseSchema: StructType,
@@ -167,7 +167,7 @@ case class ColumnFormatSamplingRelation(
 
   }
 
-  private def resolveQCS(samplingOptions: Map[String, String],
+  private def resolveQCS(samplingOptions: SMap[String, String],
       fieldNames: Array[String], module: String, schema: StructType,
       baseSchema: StructType): (Option[(Array[Int], Array[String])],
       Option[(SparkPlan, Array[String])]) = {

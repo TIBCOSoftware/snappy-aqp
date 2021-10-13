@@ -292,7 +292,7 @@ object StratifiedSampler {
   final val DEFAULT_CONCURRENCY = 16
   final val MIN_AVG_NUM_CORES = 4
 
-  def parseOptions(opts: Map[String, Any], qcsi: Array[Int],
+  def parseOptions(opts: scala.collection.Map[String, Any], qcsi: Array[Int],
       nameSuffix: String, columnBatchSize: Int,
       schema: StructType, qcsSparkPlan: Option[SparkPlan]): SampleOptions = {
 
