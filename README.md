@@ -4,8 +4,8 @@ This repository is provided for legacy users and informational purposes only. It
 
 # snappy-aqp
 
-AQP and other potentially proprietary stuff
+The Approximate Query Processing Engine (AQP), off-heap storage module, security module, JNI optimized callbacks and other stuff that was previously proprietary.
 
 ## Quickstart for build
 
-Refer to this page: https://tibcosoftware.github.io/snappydata/install/building_from_source/
+This is not meant to be built independently rather as a submodule of snappydata project. Refer to the [build instructions](https://tibcosoftware.github.io/snappydata/install/building_from_source/).
