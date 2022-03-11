@@ -8,4 +8,4 @@ The Approximate Query Processing Engine (AQP), off-heap storage module, security
 
 ## Quickstart for build
 
-This is not meant to be built independently rather as a submodule of snappydata project. Refer to the [build instructions](https://tibcosoftware.github.io/snappydata/install/building_from_source/).
+This is not meant to be built independently rather as a submodule of snappydata project. Refer to the [build instructions](https://tibcosoftware.github.io/snappydata/1.3.1/install/building_from_source/).
