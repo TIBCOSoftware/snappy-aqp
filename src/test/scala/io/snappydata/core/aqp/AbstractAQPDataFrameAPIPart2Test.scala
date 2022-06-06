@@ -39,11 +39,12 @@ abstract class AbstractAQPDataFrameAPIPart2Test
   var airLineCodeDataFrame: DataFrame = _
   // Set up sample & Main table
   var hfile: String = getClass.getResource("/2015.parquet").getPath
-  val codetableFile = getClass.getResource("/airlineCode_Lookup.csv").getPath
+  val codetableFile: String = getClass.getResource("/airlineCode_Lookup.csv").getPath
 
   protected def addSpecificProps(conf: SparkConf): Unit
 
   override def beforeAll(): Unit = {
+    stopAll()
     super.beforeAll()
     AQPRules.setTestHookStoreAQPInfo(AssertAQPAnalysis)
   }
@@ -65,7 +66,7 @@ abstract class AbstractAQPDataFrameAPIPart2Test
   }
 
 
-  protected override def newSparkConf(addOn: (SparkConf) => SparkConf): SparkConf = {
+  protected override def newSparkConf(addOn: SparkConf => SparkConf): SparkConf = {
     /**
      * Pls do not change the flag values of Property.TestDisableCodeGenFlag.name
      * and Property.UseOptimizedHashAggregateForSingleKey.name
@@ -149,9 +150,9 @@ abstract class AbstractAQPDataFrameAPIPart2Test
       val x = sampleDataFrame.join(airLineCodeDataFrame, sampleDataFrame.col("UniqueCarrier").
           equalTo(airLineCodeDataFrame("CODE"))).groupBy(sampleDataFrame("UniqueCarrier"),
         airLineCodeDataFrame("DESCRIPTION")).agg("ArrDelay" -> "avg").orderBy("avg(ArrDelay)")
-          .withError(.0000001, .9999, "STRICT")
-      logInfo(x.collect().mkString("\n"))
-      fail("should have got error limit exceeded exception")
+      val y = x.withError(.0000001, .9999, "STRICT").collect()
+      fail(s"should have got error limit exceeded exception: " +
+          s"precise=${x.collect().mkString("\n")} result=${y.mkString("\n")}")
     } catch {
       case e: Exception if e.toString.indexOf("ErrorLimitExceededException") != -1 => // OK
     }
@@ -207,9 +208,9 @@ abstract class AbstractAQPDataFrameAPIPart2Test
     // check if strict error validation works
     try {
       val x = mainTableDataFrame.agg(Map("arrdelay" -> "sum"))
-          .withError(.00001, .95, "STRICT")
-      logInfo(x.collect().mkString("\n"))
-      fail("should have got error limit execeeded exception")
+      val y = x.withError(.00001, .95, "STRICT").collect()
+      fail(s"should have got error limit exceeded exception: " +
+          s"precise=${x.collect().mkString("\n")} result=${y.mkString("\n")}")
     } catch {
       case e: Exception if e.toString.indexOf("ErrorLimitExceededException") != -1 => // OK
     }

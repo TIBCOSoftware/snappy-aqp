@@ -20,7 +20,7 @@ import org.apache.spark.SparkConf
 import io.snappydata.{Constant => Constants}
 
 
-class ClosedFormAQPDataFrameAPIPart1Test extends AbstractAQPDataFrameAPIPart1Test{
+class ClosedFormAQPDataFrameAPIPart1Test extends AbstractAQPDataFrameAPIPart1Test {
 
   protected def addSpecificProps(conf: SparkConf): Unit = {
     conf.setAppName("ClosedFormAQPDataFrameAPIPart1Test")

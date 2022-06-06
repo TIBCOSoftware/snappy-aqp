@@ -40,20 +40,19 @@ abstract class AbstractAQPDataFrameAPIPart1Test
   var airLineCodeDataFrame: DataFrame = _
   // Set up sample & Main table
   var hfile: String = getClass.getResource("/2015.parquet").getPath
-  val codetableFile = getClass.getResource("/airlineCode_Lookup.csv").getPath
+  val codetableFile: String = getClass.getResource("/airlineCode_Lookup.csv").getPath
 
 
   protected def addSpecificProps(conf: SparkConf): Unit
 
   override def beforeAll(): Unit = {
+    stopAll()
     super.beforeAll()
     AQPRules.setTestHookStoreAQPInfo(AssertAQPAnalysis)
     this.initTestDataWithoutDataSource()
   }
 
-
   override def afterAll(): Unit = {
-
     val snc = this.snc
     snc.sql(s"drop table  if exists $sampleTable")
     snc.sql(s"drop table  if exists $mainTable")
@@ -67,7 +66,7 @@ abstract class AbstractAQPDataFrameAPIPart1Test
   }
 
 
-  protected override def newSparkConf(addOn: (SparkConf) => SparkConf): SparkConf = {
+  protected override def newSparkConf(addOn: SparkConf => SparkConf): SparkConf = {
     /**
      * Pls do not change the flag values of Property.TestDisableCodeGenFlag.name
      * and Property.UseOptimizedHashAggregateForSingleKey.name
@@ -176,11 +175,11 @@ abstract class AbstractAQPDataFrameAPIPart1Test
 
     try {
       val x = mainTableDataFrame.agg(Map("arrdelay" -> "sum"))
-        .withError(.00001, .95, "STRICT")
-      logInfo(x.collect().mkString("\n"))
-      fail("should have got error limit execeeded exception")
+      val y = x.withError(.00001, .95, "STRICT").collect()
+      fail(s"should have got error limit exceeded exception: " +
+          s"precise=${x.collect().mkString("\n")} result=${y.mkString("\n")}")
     } catch {
-      case e: Exception if (e.toString.indexOf("ErrorLimitExceededException") != -1) =>
+      case e: Exception if e.toString.indexOf("ErrorLimitExceededException") != -1 =>
     }
   }
 
@@ -457,9 +456,9 @@ abstract class AbstractAQPDataFrameAPIPart1Test
   // does not look like we will be able to support it without making changes in spark
   ignore("sample data frame api test for error estimates retrieval without alias") {
 
-    var df2 = mainTableDataFrame.agg(Map("ArrDelay" -> "avg",
-      "avg(ArrDelay)" -> "absolute_error" )).withError(.5, .5)
-    var rows = df2.collect()
+    val df2 = mainTableDataFrame.agg(Map("ArrDelay" -> "avg",
+      "avg(ArrDelay)" -> "absolute_error")).withError(.5, .5)
+    val rows = df2.collect()
     assert(rows.length == 1)
     assert(rows(0).schema.length == 2)
     assert(rows(0).getDouble(1) > 0)
@@ -632,9 +631,9 @@ abstract class AbstractAQPDataFrameAPIPart1Test
       val x = mainTableDataFrame.agg(Map("arrdelay" -> "sum"))
         .withError(.00001, .95, "STRICT")
       logInfo(x.collect().mkString("\n"))
-      fail("should have got error limit execeeded exception")
+      fail("should have got error limit exceeded exception")
     } catch {
-      case e: Exception if (e.toString.indexOf("ErrorLimitExceededException") != -1) =>  // OK
+      case e: Exception if e.toString.indexOf("ErrorLimitExceededException") != -1 =>  // OK
     }
 
   }
