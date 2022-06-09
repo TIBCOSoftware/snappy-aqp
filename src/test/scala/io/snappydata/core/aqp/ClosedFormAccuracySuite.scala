@@ -1384,7 +1384,7 @@ class ClosedFormAccuracySuite
     val sdDirect = conditionalSumDirect(aggCol, whereCondition, doPrint)
     val newSD = conditionalSumOneLoop(aggCol, conditionalCol,
       whereCondition, filterOnYear, doPrint, doPrintDetailed)
-    val resultsDifferent = Math.abs(sdDirect - newSD) < 1.0
+    val resultsDifferent = Math.abs(sdDirect - newSD) < 3.0
     if (!newSD.isNaN && !resultsDifferent) {
       printDouble(s"Got SD $whereCondition Sum", sdDirect)
       printDouble(s"Expected SD $whereCondition Sum", newSD)
@@ -1393,7 +1393,7 @@ class ClosedFormAccuracySuite
 
     // repeat once
     val sdDirect1 = conditionalSumDirect(aggCol, whereCondition, doPrint)
-    val resultsDifferent1 = Math.abs(sdDirect - sdDirect1) < 1.0
+    val resultsDifferent1 = Math.abs(sdDirect - sdDirect1) < 3.0
     if (!resultsDifferent1) {
       printDouble(s"Got Repeat SD $whereCondition Sum", sdDirect1)
       printDouble(s"Expected SD $whereCondition Sum", sdDirect)
@@ -1402,7 +1402,7 @@ class ClosedFormAccuracySuite
 
     // repeat twice
     val sdDirect2 = conditionalSumDirect(aggCol, whereCondition, doPrint)
-    val resultsDifferent2 = Math.abs(sdDirect - sdDirect2) < 1.0
+    val resultsDifferent2 = Math.abs(sdDirect - sdDirect2) < 3.0
     if (!resultsDifferent2) {
       printDouble(s"Got Repeat SD $whereCondition Sum", sdDirect2)
       printDouble(s"Expected SD $whereCondition Sum", sdDirect)
@@ -1419,7 +1419,7 @@ class ClosedFormAccuracySuite
     val sdDirect = conditionalSumDirect(aggCol, whereCondition, doPrint)
     val newSD = conditionalSumOneLoop(aggCol, conditionalCol,
       whereCondition, filterOnMonth, doPrint, doPrintDetailed)
-    val resultsDifferent = Math.abs(sdDirect - newSD) < 1.0
+    val resultsDifferent = Math.abs(sdDirect - newSD) < 4.0
     if (!newSD.isNaN && !resultsDifferent) {
       printDouble(s"Got SD $whereCondition Sum", sdDirect)
       printDouble(s"Expected SD $whereCondition Sum", newSD)
@@ -1429,7 +1429,7 @@ class ClosedFormAccuracySuite
 
     // repeat once
     val sdDirect1 = conditionalSumDirect(aggCol, whereCondition, doPrint)
-    val resultsDifferent1 = Math.abs(sdDirect - sdDirect1) < 1.0
+    val resultsDifferent1 = Math.abs(sdDirect - sdDirect1) < 4.0
     if (!resultsDifferent1) {
       printDouble(s"Got Repeat SD $whereCondition Sum", sdDirect1)
       printDouble(s"Expected SD $whereCondition Sum", sdDirect)
@@ -1438,7 +1438,7 @@ class ClosedFormAccuracySuite
 
     // repeat twice
     val sdDirect2 = conditionalSumDirect(aggCol, whereCondition, doPrint)
-    val resultsDifferent2 = Math.abs(sdDirect - sdDirect2) < 1.0
+    val resultsDifferent2 = Math.abs(sdDirect - sdDirect2) < 4.0
     if (!resultsDifferent2) {
       printDouble(s"Got Repeat SD $whereCondition Sum", sdDirect2)
       printDouble(s"Expected SD $whereCondition Sum", sdDirect)

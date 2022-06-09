@@ -151,9 +151,7 @@ compileJava {
   }
 }
 
-artifacts {
-  archives packageTests
-}
+publishArtifacts.add(packageTests)
 
 archivesBaseName = 'snappydata-aqp-scala-tests'
 
