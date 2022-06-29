@@ -37,7 +37,7 @@ trait ErrorEstimateFunction extends UnaryExpression {
 
 @ExpressionDescription(
   usage = "_FUNC_() - Indicates absolute error present in the estimate (approx answer) " +
-      "calculated using error estimation method (ClosedForm or Bootstrap).  [enterprise]",
+      "calculated using error estimation method (ClosedForm or Bootstrap).  [AQP]",
   extended =
     """
      Examples:
@@ -73,7 +73,7 @@ case class AbsoluteError(child: Expression) extends ErrorEstimateFunction {
 
 @ExpressionDescription(
   usage = "_FUNC_() - Indicates ratio of absolute error to estimate (approx answer).  " +
-    "calculated using error estimation method (ClosedForm or Bootstrap). [enterprise]",
+    "calculated using error estimation method (ClosedForm or Bootstrap). [AQP]",
   extended =
     """
     Examples:
@@ -110,7 +110,7 @@ case class RelativeError(child: Expression) extends ErrorEstimateFunction {
 
 @ExpressionDescription(
   usage = "_FUNC_() - Lower value of an estimate interval for a given confidence." +
-    "calculated using error estimation method (ClosedForm or Bootstrap).  [enterprise]",
+    "calculated using error estimation method (ClosedForm or Bootstrap).  [AQP]",
   extended =
     """
     Examples:
@@ -147,7 +147,7 @@ case class LowerBound(child: Expression) extends ErrorEstimateFunction {
 
 @ExpressionDescription(
   usage = "_FUNC_() - Upper value of an estimate interval for a given confidence." +
-    "calculated using error estimation method (ClosedForm or Bootstrap).  [enterprise]",
+    "calculated using error estimation method (ClosedForm or Bootstrap).  [AQP]",
   extended =
     """
     Examples:

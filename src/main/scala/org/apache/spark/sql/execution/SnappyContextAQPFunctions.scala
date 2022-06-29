@@ -445,7 +445,7 @@ class SnappyContextAQPFunctions extends SnappyContextFunctions with Logging {
 object SnappyContextAQPFunctions {
 
   /**
-   * List all the additional builtin functions in enterprise product here.
+   * List all the additional builtin functions in AQP module here.
    */
   val builtin: Seq[(String, ExpressionInfo, FunctionBuilder)] = Seq(
     buildOneArgExpression("absolute_error", classOf[AbsoluteError], AbsoluteError),
